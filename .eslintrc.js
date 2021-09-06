@@ -6,7 +6,7 @@ module.exports = {
   extends: [
     "airbnb",
     "airbnb/hooks",
-    "plugin:react/recommended",
+    "airbnb-typescript",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "prettier",
@@ -32,6 +32,7 @@ module.exports = {
         tsx: "never",
       },
     ],
+    "import/no-cycle": "off",
     "no-use-before-define": "off",
     "react/destructuring-assignment": ["error", "never"],
     "react/jsx-filename-extension": [
