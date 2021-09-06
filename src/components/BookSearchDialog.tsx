@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BookDescription, BookSearchItem } from "./index";
 
 type BookSearchDialogProps = {
-  maxResults: number;
+  // maxResults: number;
   onBookAdd: (book: BookDescription) => void;
 };
 
@@ -21,6 +21,7 @@ const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
 
   const handleSearchClick = () => {
     if (!title && !author) {
+      // eslint-disable-next-line no-alert
       alert("条件を記入してください");
     }
   };
