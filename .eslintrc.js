@@ -4,9 +4,9 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    "plugin:react/recommended",
     "airbnb",
     "airbnb/hooks",
+    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "prettier",
@@ -23,12 +23,6 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint"],
   rules: {
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error"],
-    "react/jsx-filename-extension": [
-      2,
-      { extensions: [".js", ".jsx", ".ts", ".tsx"] },
-    ],
     "import/extensions": [
       "error",
       {
@@ -38,8 +32,14 @@ module.exports = {
         tsx: "never",
       },
     ],
+    "no-use-before-define": "off",
     "react/destructuring-assignment": ["error", "never"],
+    "react/jsx-filename-extension": [
+      2,
+      { extensions: [".js", ".jsx", ".ts", ".tsx"] },
+    ],
     "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
   },
   settings: {
     "import/resolver": {
