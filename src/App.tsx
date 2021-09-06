@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BookToRead } from "./BookToRead";
+import { BookToRead } from "./components/index";
 
 const dummyBooks: BookToRead[] = [
   {
@@ -23,7 +23,7 @@ const dummyBooks: BookToRead[] = [
   },
 ];
 
-const App = () => (
+const App = (): JSX.Element => (
   <div className="App">
     <section className="nav">
       <h1>読みたい本リスト</h1>
