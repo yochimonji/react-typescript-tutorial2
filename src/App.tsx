@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { BookToRead, BookRow } from "./components/index";
 
@@ -24,16 +24,24 @@ const dummyBooks: BookToRead[] = [
 ];
 
 const App = (): JSX.Element => {
-  const bookRows = dummyBooks.map((b) => (
+  const [books, setBooks] = useState(dummyBooks);
+
+  const handleBookDelete = (id: number) => {
+    const newBooks = books.filter((b) => b.id !== id);
+    setBooks(newBooks);
+  };
+
+  const handleBookMemoChange = (id: number, memo: string) => {
+    const newBooks = books.map((b) => (b.id === id ? { ...b, memo } : b));
+    setBooks(newBooks);
+  };
+
+  const bookRows = books.map((b) => (
     <BookRow
       book={b}
       key={b.id}
-      onMemoChange={(id, memo) => {
-        const a = 1;
-      }}
-      onDelete={(id) => {
-        const a = 1;
-      }}
+      onMemoChange={(id, memo) => handleBookMemoChange(id, memo)}
+      onDelete={(id) => handleBookDelete(id)}
     />
   ));
 
