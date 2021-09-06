@@ -1,4 +1,3 @@
-import React from "react";
 import { BookToRead } from "./index";
 
 type BookRowProps = {

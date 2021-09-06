@@ -39,6 +39,7 @@ module.exports = {
       },
     ],
     "react/destructuring-assignment": ["error", "never"],
+    "react/react-in-jsx-scope": "off",
   },
   settings: {
     "import/resolver": {
