@@ -90,7 +90,7 @@ const App = (): JSX.Element => {
         onRequestClose={handleModalClose}
         style={customStyles}
       >
-        <BookSearchDialog /* maxResults={20} */ onBookAdd={(b) => {}} />
+        <BookSearchDialog maxResults={20} onBookAdd={(b) => {}} />
       </Modal>
     </div>
   );
