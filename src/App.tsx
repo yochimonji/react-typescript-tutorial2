@@ -1,7 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import "./App.css";
-import { BookToRead, BookRow, BookSearchDialog } from "./components/index";
+import {
+  BookToRead,
+  BookDescription,
+  BookRow,
+  BookSearchDialog,
+} from "./components/index";
+
+const APP_KEY = "react-hooks-tutorial";
 
 Modal.setAppElement("#root");
 
@@ -20,30 +27,20 @@ const customStyles = {
   },
 };
 
-const dummyBooks: BookToRead[] = [
-  {
-    id: 1,
-    title: "はじめてのReact",
-    authors: "ダミー",
-    memo: "",
-  },
-  {
-    id: 2,
-    title: "React Hooks入門",
-    authors: "ダミー",
-    memo: "",
-  },
-  {
-    id: 3,
-    title: "実践Reactアプリケーション開発",
-    authors: "ダミー",
-    memo: "",
-  },
-];
-
 const App = (): JSX.Element => {
-  const [books, setBooks] = useState(dummyBooks);
+  const [books, setBooks] = useState([] as BookToRead[]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  useEffect(() => {
+    const storedBooks = localStorage.getItem(APP_KEY);
+    if (storedBooks) {
+      setBooks(JSON.parse(storedBooks));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(APP_KEY, JSON.stringify(books));
+  }, [books]);
 
   // 削除ボタン
   const handleBookDelete = (id: number) => {
@@ -64,6 +61,13 @@ const App = (): JSX.Element => {
 
   // モーダルを閉じる
   const handleModalClose = () => {
+    setModalIsOpen(false);
+  };
+
+  const handleBookAdd = (book: BookDescription) => {
+    const newBook: BookToRead = { ...book, id: Date.now(), memo: "" };
+    const newBooks = [...books, newBook];
+    setBooks(newBooks);
     setModalIsOpen(false);
   };
 
@@ -90,7 +94,7 @@ const App = (): JSX.Element => {
         onRequestClose={handleModalClose}
         style={customStyles}
       >
-        <BookSearchDialog maxResults={20} onBookAdd={(b) => {}} />
+        <BookSearchDialog maxResults={20} onBookAdd={handleBookAdd} />
       </Modal>
     </div>
   );

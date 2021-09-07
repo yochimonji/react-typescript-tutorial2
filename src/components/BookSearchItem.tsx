@@ -7,6 +7,7 @@ type BookSearchItemProps = {
 
 const BookSearchItem = (props: BookSearchItemProps): JSX.Element => {
   const { title, authors, thumbnail } = props.description;
+
   const handleAddBookClick = () => {
     props.onBookAdd(props.description);
   };
